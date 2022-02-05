@@ -1,0 +1,16 @@
+{
+  "name": "demo-pb-06",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "-": "^0.0.1",
+    "al": "^0.0.3"
+  }
+}
