@@ -1,25 +1,38 @@
 const express = require("express");
 const multer = require("multer");
+
 const router = express.Router();
 
-const Storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, " public/uploads");
+    cb(null, "public/uploads");
   },
   filename: (req, file, cb) => {
-    cb(null, `${(file, fieldname)}-${Date.now()}`);
+    const extension = file.mimetype.split("/")[1];
+    cb(null, `${file.fieldname}-${Date.now()}.${extension}`);
   },
 });
 
-const upload = multer({ Storage });
+const upload = multer({ storage });
 
 router.post("/single", upload.single("single-file"), (req, res) => {
   const file = req.file;
   if (!file) {
-    const error = new Error("you must upload a file");
+    const error = new Error("You must uplod a file!");
     error.httpStatusCode = 400;
     return next(error);
-    res.json({ success: true, result: file });
   }
+  res.json({ success: true, result: file });
 });
+
+router.post("/multiple", upload.array("multiple-files", 5), (req, res) => {
+  const files = req.files;
+  if (!files) {
+    const error = new Error("You must uplod a file!");
+    error.httpStatusCode = 400;
+    return next(error);
+  }
+  res.json({ success: true, result: files });
+});
+
 module.exports = router;
