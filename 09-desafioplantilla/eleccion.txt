@@ -1,0 +1,1 @@
+para mi parecer EJS, ya que es un motor de plantilla que me permite generar código HTML haciendo uso del JavaScript, tiene como mayor facilidad a la hora de depurar errores, menor tiempo de desarrollo y ejecución rápida, es mi pensar
